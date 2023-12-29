@@ -20,6 +20,10 @@ def get_pokemon(dex):
 def hello():
     return "Hello, World!"
 
+@app.route('/celina')
+def celina():
+    return "I love you Celina!!"
+
 @app.route('/api/pokemmo/pokemon/<int:dex>')
 def pokemon(dex):
     return get_pokemon(dex)
