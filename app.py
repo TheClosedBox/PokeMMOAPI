@@ -27,7 +27,3 @@ def celina():
 @app.route('/api/pokemmo/pokemon/<int:dex>')
 def pokemon(dex):
     return get_pokemon(dex)
-
-@app.route('/redis')
-def redis():
-    return redis_client
