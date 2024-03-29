@@ -19,11 +19,11 @@ class DataTypes(Enum):
     ABILITIES = 4,
     LOCATIONS = 5
 
-pokemon_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.POKEMON)
-item_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.ITEMS)
-move_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.MOVES)
-ability_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.ABILITIES)
-location_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.LOCATIONS)
+pokemon_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.POKEMON.value)
+item_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.ITEMS.value)
+move_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.MOVES.value)
+ability_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.ABILITIES.value)
+location_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.LOCATIONS.value)
 
 def get_pokemon(dex):
     print('Get Pokemon #' + str(dex))
