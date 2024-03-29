@@ -15,40 +15,35 @@ redis_password = os.getenv("REDIS_PASSWORD")
 class DataTypes(Enum):
     ITEMS = 1
     POKEMON = 2
-    MOVES = 3,
-    ABILITIES = 4,
+    MOVES = 3
+    ABILITIES = 4
     LOCATIONS = 5
 
-pokemon_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.POKEMON.value)
-item_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.ITEMS.value)
-move_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.MOVES.value)
-ability_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.ABILITIES.value)
-location_client = redis.Redis(host=redis_host, port=redis_port, password=redis_password, db=DataTypes.LOCATIONS.value)
+redis_pokemon_client = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password, decode_responses=True, db=DataTypes.POKEMON.value)
+redis_items_client = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password, decode_responses=True, db=DataTypes.ITEMS.value)
+redis_moves_client = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password, decode_responses=True, db=DataTypes.MOVES.value)
+redis_abilities_client = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password, decode_responses=True, db=DataTypes.ABILITIES.value)
+redis_locations_client = redis.StrictRedis(host=redis_host, port=redis_port, password=redis_password, decode_responses=True, db=DataTypes.LOCATIONS.value)
 
 def get_pokemon(dex):
     print('Get Pokemon #' + str(dex))
-    print(pokemon_client)
-    return pokemon_client.get(dex)
+    return redis_pokemon_client.get(dex)
 
 def get_item(id):
     print('Get Item #' + str(id))
-    print(item_client)
-    return item_client.get(id)
+    return redis_items_client.get(id)
 
 def get_move(id):
     print('Get Move #' + str(id))
-    print(move_client)
-    return move_client.get(id)
+    return redis_moves_client.get(id)
 
 def get_ability(id):
     print('Get Ability #' + str(id))
-    print(ability_client)
-    return ability_client.get(id)
+    return redis_abilities_client.get(id)
 
 def get_location(name):
-    print('Get Location #' + str(name))
-    print(location_client)
-    return location_client.get(name)
+    print('Get Location #' + name)
+    return redis_locations_client.get(name)
 
 @app.route('/')
 def hello():
