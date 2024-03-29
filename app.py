@@ -75,20 +75,35 @@ def location(name):
 
 @app.route('/api/pokemmo/locations')
 def locations():
-    return redis_locations_client.all()
+    locations = []
+    for key in redis_locations_client.keys():
+        locations.append(redis_locations_client.get(key))
+    return locations
 
 @app.route('/api/pokemmo/pokemons')
 def pokemons():
-    return redis_pokemon_client.all()
+    pokemons = []
+    for key in redis_pokemon_client.keys():
+        pokemons.append(redis_pokemon_client.get(key))
+    return pokemons
 
 @app.route('/api/pokemmo/items')
 def items():
-    return redis_items_client.all()
+    items = []
+    for key in redis_items_client.keys():
+        items.append(redis_items_client.get(key))
+    return items
 
 @app.route('/api/pokemmo/moves')
 def moves():
-    return redis_moves_client.all()
+    moves = []
+    for key in redis_moves_client.keys():
+        moves.append(redis_moves_client.get(key))
+    return moves
 
 @app.route('/api/pokemmo/abilities')
 def abilities():
-    return redis_abilities_client.all()
+    abilities = []
+    for key in redis_abilities_client.keys():
+        abilities.append(redis_abilities_client.get(key))
+    return abilities
