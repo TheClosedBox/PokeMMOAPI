@@ -72,3 +72,23 @@ def ability(id):
 @app.route('/api/pokemmo/location/<string:name>')
 def location(name):
     return get_location(name)
+
+@app.route('/api/pokemmo/locations')
+def locations():
+    return redis_locations_client.all()
+
+@app.route('/api/pokemmo/pokemons')
+def pokemons():
+    return redis_pokemon_client.all()
+
+@app.route('/api/pokemmo/items')
+def items():
+    return redis_items_client.all()
+
+@app.route('/api/pokemmo/moves')
+def moves():
+    return redis_moves_client.all()
+
+@app.route('/api/pokemmo/abilities')
+def abilities():
+    return redis_abilities_client.all()
