@@ -3,6 +3,7 @@ import redis
 import os
 from dotenv import load_dotenv
 from enum import Enum
+import json
 
 app = Flask(__name__)
 load_dotenv()
@@ -105,5 +106,7 @@ def moves():
 def abilities():
     abilities = []
     for key in redis_abilities_client.keys():
-        abilities.append(redis_abilities_client.get(key))
+        abilitiesData = redis_abilities_client.get(key)
+        abilitiesJson = json.loads(abilitiesData)
+        abilities.append(abilitiesJson)
     return abilities
